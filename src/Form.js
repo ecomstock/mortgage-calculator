@@ -11,7 +11,10 @@ const Form = props =>
     <br />
     <br />
     Down Payment<br />
-    <input type="number" />
+    <input 
+      type="number"
+      onChange={props.handleDownPaymentInput}
+    />
     <br />
     <br />
     Principal<br />
@@ -19,20 +22,30 @@ const Form = props =>
     <br />
     <br />
     Interest Rate (APR)<br />
-    <input type="number" />
+    <input 
+      type="number" 
+      onChange={props.handleInterestInput}
+    />
     <br />
     <br />
     Loan Term<br />
-    <input type="number" /> Years
+    <input 
+      type="number" 
+      onChange={props.handleTermInput}
+    /> years
     <br />
     <br />
     Payment<br />
-    Payment amount goes here...
+    ${props.payment} per month
   </form>
 
 Form.propTypes = {
   handlePurchaseInput: PropTypes.func.isRequired,
-  principal: PropTypes.number.isRequired
+  handleDownPaymentInput: PropTypes.func.isRequired,
+  principal: PropTypes.number.isRequired,
+  handleInterestInput: PropTypes.func.isRequired,
+  handleTermInput: PropTypes.func.isRequired,
+  payment: PropTypes.number.isRequired
 }
 
 export default Form
