@@ -4,28 +4,28 @@ import PropTypes from 'prop-types'
 const Form = props =>
   <form>
     Purchase Amount<br />
-    <input 
+    $<input 
       type="number" 
       onChange={props.handlePurchaseInput}
     />
     <br />
     <br />
     Down Payment<br />
-    <input 
+    $<input 
       type="number"
       onChange={props.handleDownPaymentInput}
     />
     <br />
     <br />
     Principal<br />
-    {props.principal}
+    ${props.principal}
     <br />
     <br />
     Interest Rate (APR)<br />
     <input 
       type="number" 
       onChange={props.handleInterestInput}
-    />
+    />%
     <br />
     <br />
     Loan Term<br />
