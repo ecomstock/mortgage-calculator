@@ -5,7 +5,8 @@ const Form = props =>
   <form>
     Purchase Amount<br />
     $<input 
-      type="number" 
+      type="number"
+      max="10000000" 
       onChange={props.handlePurchaseInput}
     />
     <br />

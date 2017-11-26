@@ -18,7 +18,7 @@ class App extends Component {
     this.purchasePrice = event.target.value
   
   handleDownPaymentInput = event => {
-    this.setState({ principal: this.purchasePrice - event.target.value })
+    this.setState({ principal: (this.purchasePrice - event.target.value).toFixed(2) })
   }
 
   handleInterestInput = event => {
@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   handleTermInput = event =>
-    this.setState({ payment: this.state.principal * (this.interest * Math.pow( (1 + this.interest), (event.target.value * 12) )) / (Math.pow( (1 + this.interest), (event.target.value * 12) ) - 1 ) })
+    this.setState({ payment: (this.state.principal * (this.interest * Math.pow( (1 + this.interest), (event.target.value * 12) )) / (Math.pow( (1 + this.interest), (event.target.value * 12) ) - 1 )).toFixed(2) })
 
   render() {
     return (
