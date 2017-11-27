@@ -16,24 +16,28 @@ class App extends Component {
 
   componentDidUpdate = () => {
     if (this.state.principal != this.state.purchasePrice - this.state.downPayment) {
-      this.setState({ principal: this.state.purchasePrice - this.state.downPayment})
+      this.setState({ 
+        principal: this.state.purchasePrice - this.state.downPayment
+      })
+    }
+    if (this.state.payment != (this.state.principal * (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2)) {
+      this.setState({
+        payment: (this.state.principal * (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2)
+      })
     }
   }
 
-  handlePurchaseInput = event => {
+  handlePurchaseInput = event => 
     this.setState({ purchasePrice: event.target.value })
-  }
   
-  handleDownPaymentInput = event => {
+  handleDownPaymentInput = event => 
     this.setState({ downPayment: event.target.value })
-  }
 
-  handleInterestInput = event => {
+  handleInterestInput = event =>
     this.setState({ interest: event.target.value / 1200 })
-  }
 
   handleTermInput = event =>
-    this.setState({ payment: (this.state.principal * (this.interest * Math.pow( (1 + this.interest), (event.target.value * 12) )) / (Math.pow( (1 + this.interest), (event.target.value * 12) ) - 1 )).toFixed(2) })
+    this.setState({ term: event.target.value * 12 })
 
   render() {
     return (
