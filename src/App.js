@@ -6,11 +6,11 @@ import Form from './Form'
 class App extends Component {
   
   state = {
-    purchasePrice: 0,
-    downPayment: 0,
+    purchasePrice: "",
+    downPayment: "",
     principal: 0,
-    interest: 0,
-    term: 0,
+    interest: "",
+    term: "",
     payment: 0
   }
 
@@ -20,7 +20,7 @@ class App extends Component {
         principal: this.state.purchasePrice - this.state.downPayment
       })
     }
-    if (this.state.payment != (this.state.principal * (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2)) {
+    if (this.state.payment != (this.state.principal * (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2) && this.state.purchasePrice != "" && this.state.interest != "" && this.state.term != "") {
       this.setState({
         payment: (this.state.principal * (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2)
       })
