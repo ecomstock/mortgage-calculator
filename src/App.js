@@ -8,6 +8,7 @@ class App extends Component {
   state = {
     purchasePrice: "",
     downPayment: "",
+    downPaymentPercent: true,
     principal: 0,
     interest: "",
     term: "",
@@ -15,7 +16,12 @@ class App extends Component {
   }
 
   componentDidUpdate = () => {
-    if (this.state.principal != this.state.purchasePrice - this.state.downPayment) {
+    if (this.state.downPaymentPercent = true && (this.state.principal != (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2))) {
+      this.setState({
+        principal: (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2)
+      })
+    }
+    if (this.state.downPaymentDollars = false && this.state.principal != this.state.purchasePrice - this.state.downPayment) {
       this.setState({ 
         principal: this.state.purchasePrice - this.state.downPayment
       })
@@ -29,6 +35,9 @@ class App extends Component {
 
   handlePurchaseInput = event => 
     this.setState({ purchasePrice: event.target.value })
+
+  handleDownPaymentPercent = () =>
+    this.setState({ downPaymentPercent: !this.state.downPaymentPercent })
   
   handleDownPaymentInput = event => 
     this.setState({ downPayment: event.target.value })
@@ -53,6 +62,9 @@ class App extends Component {
             handleInterestInput={this.handleInterestInput}
             handleTermInput={this.handleTermInput}
             payment={this.state.payment}
+            downPaymentPercent={this.state.downPaymentPercent}
+            downPaymentDollars={this.state.downPaymentDollars}
+            handleDownPaymentPercent={this.handleDownPaymentPercent}
           />
         </body>
       </div>

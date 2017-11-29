@@ -11,10 +11,24 @@ const Form = props =>
     <br />
     <br />
     Down Payment<br />
-    $<input 
+    <input 
       type="number"
       onChange={props.handleDownPaymentInput}
     />
+    <input 
+      type="radio"
+      name="down-payment"
+      value="percent"
+      checked={props.downPaymentPercent}
+      onChange={props.handleDownPaymentPercent}
+    />percent
+    <input 
+      type="radio"
+      name="down-payment"
+      value="dollars"
+      checked={props.downPaymentDollars}
+      onChange={props.handleDownPaymentPercent}
+    />dollars
     <br />
     <br />
     Principal<br />
@@ -45,7 +59,10 @@ Form.propTypes = {
   principal: PropTypes.number.isRequired,
   handleInterestInput: PropTypes.func.isRequired,
   handleTermInput: PropTypes.func.isRequired,
-  payment: PropTypes.number.isRequired
+  payment: PropTypes.number.isRequired,
+  downPaymentPercent: PropTypes.bool.isRequired,
+  downPaymentDollars: PropTypes.bool.isRequired,
+  handleDownPaymentPercent: PropTypes.func.isRequired
 }
 
 export default Form
