@@ -8,7 +8,7 @@ class App extends Component {
   state = {
     purchasePrice: "",
     downPayment: "",
-    downPaymentPercent: true,
+    selectedRadio: "percent",
     principal: 0,
     interest: "",
     term: "",
@@ -16,12 +16,15 @@ class App extends Component {
   }
 
   componentDidUpdate = () => {
-    if (this.state.downPaymentPercent = true && (this.state.principal != (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2))) {
+    // if (this.state.payment != 0 && this.state.purchasePrice === "" || this.state.interest === "" || this.state.payment === ""){
+    //   this.setState({ payment: 0 })
+    // }
+    if (this.state.selectedRadio === "percent" && (this.state.principal != (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2))) {
       this.setState({
         principal: (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2)
       })
     }
-    if (this.state.downPaymentDollars = false && this.state.principal != this.state.purchasePrice - this.state.downPayment) {
+    if (this.state.selectedRadio === "dollars" && this.state.principal != this.state.purchasePrice - this.state.downPayment) {
       this.setState({ 
         principal: this.state.purchasePrice - this.state.downPayment
       })
@@ -36,8 +39,8 @@ class App extends Component {
   handlePurchaseInput = event => 
     this.setState({ purchasePrice: event.target.value })
 
-  handleDownPaymentPercent = () =>
-    this.setState({ downPaymentPercent: !this.state.downPaymentPercent })
+  handleDownPaymentRadio = event =>
+    this.setState({ selectedRadio: event.target.value })
   
   handleDownPaymentInput = event => 
     this.setState({ downPayment: event.target.value })
@@ -47,6 +50,17 @@ class App extends Component {
 
   handleTermInput = event =>
     this.setState({ term: event.target.value * 12 })
+
+  handleFormReset = () =>
+    this.setState({ 
+      purchasePrice: "",
+      downPayment: "",
+      principal: 0,
+      selectedRadio: "percent",
+      interest: "",
+      term: "",
+      payment: 0
+    })
 
   render() {
     return (
@@ -62,9 +76,9 @@ class App extends Component {
             handleInterestInput={this.handleInterestInput}
             handleTermInput={this.handleTermInput}
             payment={this.state.payment}
-            downPaymentPercent={this.state.downPaymentPercent}
-            downPaymentDollars={this.state.downPaymentDollars}
-            handleDownPaymentPercent={this.handleDownPaymentPercent}
+            handleDownPaymentRadio={this.handleDownPaymentRadio}
+            selectedRadio={this.state.selectedRadio}
+            handleFormReset={this.handleFormReset}
           />
         </body>
       </div>

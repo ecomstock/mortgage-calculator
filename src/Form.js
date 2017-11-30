@@ -17,17 +17,15 @@ const Form = props =>
     />
     <input 
       type="radio"
-      name="down-payment"
       value="percent"
-      checked={props.downPaymentPercent}
-      onChange={props.handleDownPaymentPercent}
+      checked={props.selectedRadio === "percent"}
+      onChange={props.handleDownPaymentRadio}
     />percent
     <input 
       type="radio"
-      name="down-payment"
       value="dollars"
-      checked={props.downPaymentDollars}
-      onChange={props.handleDownPaymentPercent}
+      checked={props.selectedRadio === "dollars"}
+      onChange={props.handleDownPaymentRadio}
     />dollars
     <br />
     <br />
@@ -51,6 +49,11 @@ const Form = props =>
     <br />
     Payment<br />
     ${props.payment} per month
+    <br />
+    <br />
+    <button onClick={props.handleFormReset}>
+      Reset
+    </button>
   </form>
 
 Form.propTypes = {
@@ -62,7 +65,9 @@ Form.propTypes = {
   payment: PropTypes.number.isRequired,
   downPaymentPercent: PropTypes.bool.isRequired,
   downPaymentDollars: PropTypes.bool.isRequired,
-  handleDownPaymentPercent: PropTypes.func.isRequired
+  selectedRadio: PropTypes.string.isRequired,
+  handleDownPaymentRadio: PropTypes.func.isRequired,
+  handleFormReset: PropTypes.func.isRequired
 }
 
 export default Form
