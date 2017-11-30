@@ -1,5 +1,5 @@
 * {
-  background-color: darkgreen;
+  background-color: #49c5b6;
 }
 
 body {
@@ -11,18 +11,18 @@ body {
 
 h1 {
   text-align: center;
-  color: darkgreen;
+  color: black;
   background-color: white;
 }
 
 form {
   background-color: white;
-  color: darkgreen;
+  color: #00796a;
 }
 
 input {
   background-color: white;
-  color: darkgreen;
+  color: #00796a;
 }
 
 .app {

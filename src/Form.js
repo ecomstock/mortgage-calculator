@@ -5,7 +5,8 @@ const Form = props =>
   <form>
     Purchase Amount<br />
     $<input 
-      type="number" 
+      type="number"
+      step="any" 
       onChange={props.handlePurchaseInput}
     />
     <br />
@@ -13,6 +14,7 @@ const Form = props =>
     Down Payment<br />
     <input 
       type="number"
+      step="any"
       onChange={props.handleDownPaymentInput}
     />
     <input 
@@ -35,7 +37,8 @@ const Form = props =>
     <br />
     Interest Rate (APR)<br />
     <input 
-      type="number" 
+      type="number"
+      step="any" 
       onChange={props.handleInterestInput}
     />%
     <br />
@@ -59,13 +62,11 @@ const Form = props =>
 Form.propTypes = {
   handlePurchaseInput: PropTypes.func.isRequired,
   handleDownPaymentInput: PropTypes.func.isRequired,
-  principal: PropTypes.number.isRequired,
   handleInterestInput: PropTypes.func.isRequired,
   handleTermInput: PropTypes.func.isRequired,
   payment: PropTypes.number.isRequired,
-  downPaymentPercent: PropTypes.bool.isRequired,
-  downPaymentDollars: PropTypes.bool.isRequired,
   selectedRadio: PropTypes.string.isRequired,
+  principal: PropTypes.number.isRequired,
   handleDownPaymentRadio: PropTypes.func.isRequired,
   handleFormReset: PropTypes.func.isRequired
 }

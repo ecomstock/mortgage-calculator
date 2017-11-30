@@ -16,9 +16,9 @@ class App extends Component {
   }
 
   componentDidUpdate = () => {
-    // if (this.state.payment != 0 && this.state.purchasePrice === "" || this.state.interest === "" || this.state.payment === ""){
-    //   this.setState({ payment: 0 })
-    // }
+    if (this.state.payment !== 0 && (this.state.purchasePrice === "" || this.state.interest === "" || this.state.term === "")){
+      this.setState({ payment: 0 })
+    }
     if (this.state.selectedRadio === "percent" && (this.state.principal != (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2))) {
       this.setState({
         principal: (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2)
@@ -57,7 +57,7 @@ class App extends Component {
       downPayment: "",
       principal: 0,
       selectedRadio: "percent",
-      interest: "",
+      interest: 0,
       term: "",
       payment: 0
     })
@@ -68,7 +68,7 @@ class App extends Component {
         <header>
           <h1>Mortgage Calculator</h1>
         </header>
-        <body>
+        <div>
           <Form 
             handlePurchaseInput={this.handlePurchaseInput}
             handleDownPaymentInput={this.handleDownPaymentInput}
@@ -80,7 +80,7 @@ class App extends Component {
             selectedRadio={this.state.selectedRadio}
             handleFormReset={this.handleFormReset}
           />
-        </body>
+        </div>
       </div>
     );
   }
