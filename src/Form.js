@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Form = props =>
   <form>
     Purchase Amount<br />
-    $<input 
+    <input 
       type="number"
       step="any" 
       onChange={props.handlePurchaseInput}

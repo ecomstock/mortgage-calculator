@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
-
 import Form from './Form'
+import './App.css';
+import Card, { CardHeader } from 'material-ui/Card';
 
 class App extends Component {
-  
+
   state = {
     purchasePrice: "",
     downPayment: "",
@@ -16,33 +16,64 @@ class App extends Component {
   }
 
   componentDidUpdate = () => {
-    if (this.state.payment !== 0 && (this.state.purchasePrice === "" || this.state.interest === "" || this.state.term === "")){
-      this.setState({ payment: 0 })
+
+    if(
+      this.state.payment !== 0 &&
+        (
+          this.state.purchasePrice === "" || 
+          this.state.interest === "" || 
+          this.state.term === ""
+        )
+      ){ this.setState({ payment: 0 } )
     }
-    if (this.state.selectedRadio === "percent" && (this.state.principal != (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2))) {
-      this.setState({
-        principal: (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2)
+
+    if(
+      this.state.selectedRadio === "percent" &&
+        (
+          this.state.principal !== (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2)
+        )
+      ){
+        this.setState({
+          principal: (this.state.purchasePrice * (1 - (this.state.downPayment / 100))).toFixed(2)
       })
     }
-    if (this.state.selectedRadio === "dollars" && this.state.principal != this.state.purchasePrice - this.state.downPayment) {
-      this.setState({ 
-        principal: this.state.purchasePrice - this.state.downPayment
-      })
-    }
-    if (this.state.payment != (this.state.principal * (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2) && this.state.purchasePrice != "" && this.state.interest != "" && this.state.term != "") {
-      this.setState({
-        payment: (this.state.principal * (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2)
-      })
-    }
+
+    if(
+        this.state.selectedRadio === "dollars" &&
+        this.state.principal !== this.state.purchasePrice - this.state.downPayment
+      ){
+        this.setState({
+          principal: this.state.purchasePrice - this.state.downPayment
+        })
+      }
+
+    if(
+        this.state.payment !== 
+          (
+            this.state.principal * 
+            (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / 
+            (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2)
+        && this.state.purchasePrice !== "" 
+        && this.state.interest !== "" 
+        && this.state.term !== ""
+      ){
+        this.setState({
+          payment: 
+            (
+              this.state.principal * 
+              (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / 
+              (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2)
+        })
+      }
   }
 
-  handlePurchaseInput = event => 
+  handlePurchaseInput = event =>
     this.setState({ purchasePrice: event.target.value })
 
   handleDownPaymentRadio = event =>
     this.setState({ selectedRadio: event.target.value })
-  
-  handleDownPaymentInput = event => 
+
+  handleDownPaymentInput = event =>
     this.setState({ downPayment: event.target.value })
 
   handleInterestInput = event =>
@@ -52,7 +83,7 @@ class App extends Component {
     this.setState({ term: event.target.value * 12 })
 
   handleFormReset = () =>
-    this.setState({ 
+    this.setState({
       purchasePrice: "",
       downPayment: "",
       principal: 0,
@@ -63,16 +94,15 @@ class App extends Component {
     })
 
   render() {
+
     return (
-      <div className="app">
-        <header>
-          <h1>Mortgage Calculator</h1>
-        </header>
+      <Card raised className="card">
+        <CardHeader title="Mortgage Calculator" />
         <div>
-          <Form 
+          <Form
             handlePurchaseInput={this.handlePurchaseInput}
             handleDownPaymentInput={this.handleDownPaymentInput}
-            principal={this.state.principal} 
+            principal={this.state.principal}
             handleInterestInput={this.handleInterestInput}
             handleTermInput={this.handleTermInput}
             payment={this.state.payment}
@@ -81,7 +111,7 @@ class App extends Component {
             handleFormReset={this.handleFormReset}
           />
         </div>
-      </div>
+      </Card>
     );
   }
 }
