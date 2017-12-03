@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'material-ui/Button';
 
 const Form = props =>
   <form>
-    Purchase Amount<br />
+    Purchase Price<br />
     <input 
       type="number"
       step="any" 
       onChange={props.handlePurchaseInput}
+      value={props.purchasePrice}
     />
     <br />
     <br />
@@ -16,6 +18,7 @@ const Form = props =>
       type="number"
       step="any"
       onChange={props.handleDownPaymentInput}
+      value={props.downPayment}
     />
     <input 
       type="radio"
@@ -40,6 +43,7 @@ const Form = props =>
       type="number"
       step="any" 
       onChange={props.handleInterestInput}
+      value={props.interest}
     />%
     <br />
     <br />
@@ -47,6 +51,7 @@ const Form = props =>
     <input 
       type="number" 
       onChange={props.handleTermInput}
+      value={props.term}
     /> years
     <br />
     <br />
@@ -54,20 +59,30 @@ const Form = props =>
     ${props.payment} per month
     <br />
     <br />
-    <button onClick={props.handleFormReset}>
+    <Button onClick={props.handleFormReset}>
       Reset
-    </button>
+    </Button>
   </form>
 
 Form.propTypes = {
+  purchasePrice: PropTypes.number.isRequired,
   handlePurchaseInput: PropTypes.func.isRequired,
+  
+  downPayment: PropTypes.number.isRequired,
   handleDownPaymentInput: PropTypes.func.isRequired,
-  handleInterestInput: PropTypes.func.isRequired,
-  handleTermInput: PropTypes.func.isRequired,
-  payment: PropTypes.number.isRequired,
   selectedRadio: PropTypes.string.isRequired,
-  principal: PropTypes.number.isRequired,
   handleDownPaymentRadio: PropTypes.func.isRequired,
+  
+  principal: PropTypes.string.isRequired,
+
+  interest: PropTypes.number.isRequired,
+  handleInterestInput: PropTypes.func.isRequired,
+
+  term: PropTypes.number.isRequired,
+  handleTermInput: PropTypes.func.isRequired,
+
+  payment: PropTypes.number.isRequired,
+
   handleFormReset: PropTypes.func.isRequired
 }
 

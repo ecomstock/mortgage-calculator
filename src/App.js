@@ -9,22 +9,22 @@ class App extends Component {
     purchasePrice: "",
     downPayment: "",
     selectedRadio: "percent",
-    principal: 0,
+    principal: "0.00",
     interest: "",
     term: "",
-    payment: 0
+    payment: "0.00"
   }
 
   componentDidUpdate = () => {
 
     if(
-      this.state.payment !== 0 &&
+      this.state.payment != 0 &&
         (
           this.state.purchasePrice === "" || 
           this.state.interest === "" || 
           this.state.term === ""
         )
-      ){ this.setState({ payment: 0 } )
+      ){ this.setState({ payment: "0.00" } )
     }
 
     if(
@@ -43,7 +43,7 @@ class App extends Component {
         this.state.principal !== this.state.purchasePrice - this.state.downPayment
       ){
         this.setState({
-          principal: this.state.purchasePrice - this.state.downPayment
+          principal: (this.state.purchasePrice - this.state.downPayment)
         })
       }
 
@@ -51,8 +51,8 @@ class App extends Component {
         this.state.payment !== 
           (
             this.state.principal * 
-            (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / 
-            (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2)
+            (this.state.interest/1200  * Math.pow((1 + this.state.interest/1200), this.state.term * 12)) / 
+            (Math.pow((1 + this.state.interest/1200), this.state.term * 12) - 1)).toFixed(2)
         && this.state.purchasePrice !== "" 
         && this.state.interest !== "" 
         && this.state.term !== ""
@@ -61,8 +61,8 @@ class App extends Component {
           payment: 
             (
               this.state.principal * 
-              (this.state.interest * Math.pow((1 + this.state.interest), this.state.term)) / 
-              (Math.pow((1 + this.state.interest), this.state.term) - 1)).toFixed(2)
+              (this.state.interest/1200 * Math.pow((1 + this.state.interest/1200), this.state.term * 12)) / 
+              (Math.pow((1 + this.state.interest/1200), this.state.term * 12) - 1)).toFixed(2)
         })
       }
   }
@@ -77,21 +77,23 @@ class App extends Component {
     this.setState({ downPayment: event.target.value })
 
   handleInterestInput = event =>
-    this.setState({ interest: event.target.value / 1200 })
+    this.setState({ interest: event.target.value })
 
   handleTermInput = event =>
-    this.setState({ term: event.target.value * 12 })
+    this.setState({ term: event.target.value })
 
-  handleFormReset = () =>
+  handleFormReset = (event) => {
+    event.preventDefault()
     this.setState({
       purchasePrice: "",
       downPayment: "",
-      principal: 0,
+      principal: "0.00",
       selectedRadio: "percent",
-      interest: 0,
+      interest: "",
       term: "",
-      payment: 0
+      payment: "0.00"
     })
+  }
 
   render() {
 
@@ -100,14 +102,24 @@ class App extends Component {
         <CardHeader title="Mortgage Calculator" />
         <div>
           <Form
+            purchasePrice={this.state.purchasePrice}
             handlePurchaseInput={this.handlePurchaseInput}
+
+            downPayment={this.state.downPayment}
             handleDownPaymentInput={this.handleDownPaymentInput}
-            principal={this.state.principal}
-            handleInterestInput={this.handleInterestInput}
-            handleTermInput={this.handleTermInput}
-            payment={this.state.payment}
-            handleDownPaymentRadio={this.handleDownPaymentRadio}
             selectedRadio={this.state.selectedRadio}
+            handleDownPaymentRadio={this.handleDownPaymentRadio}
+            
+            principal={this.state.principal}
+
+            interest={this.state.interest}
+            handleInterestInput={this.handleInterestInput}
+
+            term={this.state.term}
+            handleTermInput={this.handleTermInput}
+            
+            payment={this.state.payment}
+            
             handleFormReset={this.handleFormReset}
           />
         </div>
