@@ -31,19 +31,27 @@ const Form = props =>
         value={props.downPayment}
       />
     </FormControl>
-    <FormControl component="fieldset" required>
-      <RadioGroup onChange={props.handleDownPaymentRadio}>
-        <FormControlLabel 
-          value="percent" 
-          control={<Radio checked={props.selectedRadio === "percent"} />} 
-          label="Percent" 
-        />
-        <FormControlLabel 
-          value="dollars" 
-          control={<Radio checked={props.selectedRadio === "dollars"} />} 
-          label="Dollars"  
-        />
-      </RadioGroup>
+    <FormControl>
+      <FormControlLabel
+        value="percent"
+        label="%"
+        control={
+          <Radio 
+            checked={props.selectedRadio === "percent"}
+            onChange={props.handleDownPaymentRadio} 
+          />}
+      />
+    </FormControl>
+    <FormControl>
+      <FormControlLabel
+        value="dollars"
+        label="$"
+        control={
+          <Radio 
+            checked={props.selectedRadio === "dollars"}
+            onChange={props.handleDownPaymentRadio} 
+          />}
+      />
     </FormControl>
     <div className="form">
       <p>Loan amount</p>
