@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input, { InputLabel } from 'material-ui/Input';
+import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormControlLabel, FormHelperText } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import Button from 'material-ui/Button';
@@ -8,8 +8,9 @@ import Button from 'material-ui/Button';
 const Form = props =>
   <form>
     <FormControl>
-      <InputLabel htmlFor="purchasePrice">Purchase Price</InputLabel>
+      <InputLabel className="form" htmlFor="purchasePrice">Purchase Price</InputLabel>
       <Input 
+        className="form"
         id="purchasePrice"
         type="number"
         step="any" 
@@ -20,8 +21,9 @@ const Form = props =>
     <br />
     <br />
     <FormControl>
-      <InputLabel htmlFor="downPayment">Down Payment</InputLabel>
+      <InputLabel className="form" htmlFor="downPayment">Down Payment</InputLabel>
       <Input 
+        className="form" 
         id="downPayment"
         type="number"
         step="any"
@@ -43,52 +45,39 @@ const Form = props =>
         />
       </RadioGroup>
     </FormControl>
-    {/* <input 
-      type="radio"
-      value="percent"
-      checked={props.selectedRadio === "percent"}
-      onChange={props.handleDownPaymentRadio}
-    />percent
-    <input 
-      type="radio"
-      value="dollars"
-      checked={props.selectedRadio === "dollars"}
-      onChange={props.handleDownPaymentRadio}
-    />dollars */}
-    <br />
-    <br />
-    Principal<br />
-    ${props.principal}
-    <br />
-    <br />
+    <div className="form">
+      <p>Loan amount</p>
+      <p>${props.principal}</p>
+    </div>
     <FormControl>
-      <InputLabel htmlFor="interest">Interest Rate (APR)</InputLabel>
+      <InputLabel className="form" htmlFor="interest">Interest Rate (APR)</InputLabel>
       <Input
+        className="form" 
         id="interest" 
         type="number"
         step="any" 
         onChange={props.handleInterestInput}
         value={props.interest}
-      />%
+        endAdornment={<InputAdornment position="end">%</InputAdornment>}
+      />
     </FormControl>
     <br />
     <br />
     <FormControl>
-      <InputLabel htmlFor="term">Loan Term</InputLabel>
+      <InputLabel className="form" htmlFor="term">Loan term (years)</InputLabel>
       <Input 
+        className="form" 
         id="term"
         type="number" 
         onChange={props.handleTermInput}
         value={props.term}
-      /> years
+      />
     </FormControl>
-    <br />
-    <br />
-    Payment<br />
-    ${props.payment} per month
-    <br />
-    <br />
-    <Button onClick={props.handleFormReset}>
+    <div className="form">
+      <p>Monthly payment</p>
+      <p>${props.payment}</p>
+    </div>
+    <Button raised onClick={props.handleFormReset} className="reset-button" >
       Reset
     </Button>
   </form>

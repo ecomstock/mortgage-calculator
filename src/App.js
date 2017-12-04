@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from './Form'
 import './App.css';
+import Grid from 'material-ui/Grid';
 import Card, { CardHeader } from 'material-ui/Card';
 
 class App extends Component {
@@ -99,7 +100,7 @@ class App extends Component {
 
     return (
       <Card raised className="card">
-        <CardHeader title="Mortgage Calculator" />
+        <CardHeader className="card-header" title="Mortgage Calculator" />
         <div>
           <Form
             purchasePrice={this.state.purchasePrice}
