@@ -1,26 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Input, { InputLabel } from 'material-ui/Input';
+import { FormControl, FormControlLabel, FormHelperText } from 'material-ui/Form';
+import Radio, { RadioGroup } from 'material-ui/Radio';
 import Button from 'material-ui/Button';
 
 const Form = props =>
   <form>
-    Purchase Price<br />
-    <input 
-      type="number"
-      step="any" 
-      onChange={props.handlePurchaseInput}
-      value={props.purchasePrice}
-    />
+    <FormControl>
+      <InputLabel htmlFor="purchasePrice">Purchase Price</InputLabel>
+      <Input 
+        id="purchasePrice"
+        type="number"
+        step="any" 
+        onChange={props.handlePurchaseInput}
+        value={props.purchasePrice}
+      />
+    </FormControl>
     <br />
     <br />
-    Down Payment<br />
-    <input 
-      type="number"
-      step="any"
-      onChange={props.handleDownPaymentInput}
-      value={props.downPayment}
-    />
-    <input 
+    <FormControl>
+      <InputLabel htmlFor="downPayment">Down Payment</InputLabel>
+      <Input 
+        id="downPayment"
+        type="number"
+        step="any"
+        onChange={props.handleDownPaymentInput}
+        value={props.downPayment}
+      />
+    </FormControl>
+    <FormControl component="fieldset" required>
+      <RadioGroup onChange={props.handleDownPaymentRadio}>
+        <FormControlLabel 
+          value="percent" 
+          control={<Radio checked={props.selectedRadio === "percent"} />} 
+          label="Percent" 
+        />
+        <FormControlLabel 
+          value="dollars" 
+          control={<Radio checked={props.selectedRadio === "dollars"} />} 
+          label="Dollars"  
+        />
+      </RadioGroup>
+    </FormControl>
+    {/* <input 
       type="radio"
       value="percent"
       checked={props.selectedRadio === "percent"}
@@ -31,28 +54,34 @@ const Form = props =>
       value="dollars"
       checked={props.selectedRadio === "dollars"}
       onChange={props.handleDownPaymentRadio}
-    />dollars
+    />dollars */}
     <br />
     <br />
     Principal<br />
     ${props.principal}
     <br />
     <br />
-    Interest Rate (APR)<br />
-    <input 
-      type="number"
-      step="any" 
-      onChange={props.handleInterestInput}
-      value={props.interest}
-    />%
+    <FormControl>
+      <InputLabel htmlFor="interest">Interest Rate (APR)</InputLabel>
+      <Input
+        id="interest" 
+        type="number"
+        step="any" 
+        onChange={props.handleInterestInput}
+        value={props.interest}
+      />%
+    </FormControl>
     <br />
     <br />
-    Loan Term<br />
-    <input 
-      type="number" 
-      onChange={props.handleTermInput}
-      value={props.term}
-    /> years
+    <FormControl>
+      <InputLabel htmlFor="term">Loan Term</InputLabel>
+      <Input 
+        id="term"
+        type="number" 
+        onChange={props.handleTermInput}
+        value={props.term}
+      /> years
+    </FormControl>
     <br />
     <br />
     Payment<br />
