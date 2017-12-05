@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NumberFormat from 'react-number-format';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormControlLabel, FormHelperText } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
@@ -14,11 +15,11 @@ const Form = props =>
         id="purchasePrice"
         type="number"
         step="any" 
+        //inputComponent={NumberFormatCustom}
         onChange={props.handlePurchaseInput}
         value={props.purchasePrice}
       />
     </FormControl>
-    <br />
     <br />
     <FormControl>
       <InputLabel className="form" htmlFor="downPayment">Down Payment</InputLabel>
@@ -37,6 +38,7 @@ const Form = props =>
         label="%"
         control={
           <Radio 
+            id="radio-percent"
             checked={props.selectedRadio === "percent"}
             onChange={props.handleDownPaymentRadio} 
           />}
@@ -55,7 +57,7 @@ const Form = props =>
     </FormControl>
     <div className="form">
       <p>Loan amount</p>
-      <p>${props.principal}</p>
+      <p className="dollar-figures">${props.principal}</p>
     </div>
     <FormControl>
       <InputLabel className="form" htmlFor="interest">Interest Rate (APR)</InputLabel>
@@ -70,20 +72,20 @@ const Form = props =>
       />
     </FormControl>
     <br />
-    <br />
     <FormControl>
-      <InputLabel className="form" htmlFor="term">Loan term (years)</InputLabel>
+      <InputLabel className="form" htmlFor="term">Loan term</InputLabel>
       <Input 
         className="form" 
         id="term"
         type="number" 
         onChange={props.handleTermInput}
         value={props.term}
+        endAdornment={<InputAdornment position="end">years</InputAdornment>}
       />
     </FormControl>
     <div className="form">
       <p>Monthly payment</p>
-      <p>${props.payment}</p>
+      <p className="dollar-figures">${props.payment}</p>
     </div>
     <Button raised onClick={props.handleFormReset} className="reset-button" >
       Reset
@@ -111,5 +113,12 @@ Form.propTypes = {
 
   handleFormReset: PropTypes.func.isRequired
 }
+
+// const NumberFormatCustom = props => 
+//   <NumberFormat
+//     thousandSeparator
+//     prefix="$"
+//   />
+
 
 export default Form

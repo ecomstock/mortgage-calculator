@@ -3,6 +3,13 @@ import Form from './Form'
 import './App.css';
 import Grid from 'material-ui/Grid';
 import Card, { CardHeader } from 'material-ui/Card';
+import { CreateMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles';
+
+const styles = theme => ({}, {
+  CardHeader: {
+    color: "white",
+  },
+});
 
 class App extends Component {
 
@@ -41,10 +48,10 @@ class App extends Component {
 
     if(
         this.state.selectedRadio === "dollars" &&
-        this.state.principal !== this.state.purchasePrice - this.state.downPayment
+        this.state.principal !== (this.state.purchasePrice - this.state.downPayment).toFixed(2)
       ){
         this.setState({
-          principal: (this.state.purchasePrice - this.state.downPayment)
+          principal: ((this.state.purchasePrice - this.state.downPayment).toFixed(2))
         })
       }
 
@@ -71,8 +78,10 @@ class App extends Component {
   handlePurchaseInput = event =>
     this.setState({ purchasePrice: event.target.value })
 
-  handleDownPaymentRadio = event =>
+  handleDownPaymentRadio = event => {
     this.setState({ selectedRadio: event.target.value })
+
+  }
 
   handleDownPaymentInput = event =>
     this.setState({ downPayment: event.target.value })
@@ -99,32 +108,34 @@ class App extends Component {
   render() {
 
     return (
-      <Card raised className="card">
-        <CardHeader className="card-header" title="Mortgage Calculator" />
-        <div>
-          <Form
-            purchasePrice={this.state.purchasePrice}
-            handlePurchaseInput={this.handlePurchaseInput}
+      <MuiThemeProvider>
+        <Card raised className="card">
+          <CardHeader className="card-header" title="Mortgage Calculator" />
+          <div>
+            <Form
+              purchasePrice={this.state.purchasePrice}
+              handlePurchaseInput={this.handlePurchaseInput}
 
-            downPayment={this.state.downPayment}
-            handleDownPaymentInput={this.handleDownPaymentInput}
-            selectedRadio={this.state.selectedRadio}
-            handleDownPaymentRadio={this.handleDownPaymentRadio}
-            
-            principal={this.state.principal}
+              downPayment={this.state.downPayment}
+              handleDownPaymentInput={this.handleDownPaymentInput}
+              selectedRadio={this.state.selectedRadio}
+              handleDownPaymentRadio={this.handleDownPaymentRadio}
+              
+              principal={this.state.principal}
 
-            interest={this.state.interest}
-            handleInterestInput={this.handleInterestInput}
+              interest={this.state.interest}
+              handleInterestInput={this.handleInterestInput}
 
-            term={this.state.term}
-            handleTermInput={this.handleTermInput}
-            
-            payment={this.state.payment}
-            
-            handleFormReset={this.handleFormReset}
-          />
-        </div>
-      </Card>
+              term={this.state.term}
+              handleTermInput={this.handleTermInput}
+              
+              payment={this.state.payment}
+              
+              handleFormReset={this.handleFormReset}
+            />
+          </div>
+        </Card>
+      </MuiThemeProvider>
     );
   }
 }

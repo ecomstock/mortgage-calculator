@@ -1,26 +1,37 @@
-
-.card {
-  width: 450px;
-  margin: 10px auto;
-}
-
 body {
-  /* margin: 0;
-  padding: 0; */
   font-family: "Roboto", sans-serif;
   background-color: white;
 }
 
+.card {
+  width: 400px;
+  margin: 10px auto;
+}
+
 .form {
   margin-left: 10px;
+  
 }
 
 #interest {
-  max-width: 130px;
+  max-width: 165px;
+}
+
+#term {
+  max-width: 142px;
+}
+
+#radio-percent {
+  margin-left: 5px;
+}
+
+.dollar-figures {
+  margin-top: -15px;
+  margin-bottom: 15px;
 }
 
 .reset-button {
-  margin: 0px 0px 10px 10px;
+  margin: 20px 0px 25px 10px;
 }
 
 .card-header {
