@@ -1,31 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NumberFormat from 'react-number-format';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import { FormControl, FormControlLabel, FormHelperText } from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
+import { FormControl, FormControlLabel } from 'material-ui/Form';
+import Radio from 'material-ui/Radio';
 import Button from 'material-ui/Button';
 
 const Form = props =>
-  <form>
-    <FormControl>
+{  
+  return<form>
+    <FormControl id="purchase-price">
       <InputLabel className="form" htmlFor="purchasePrice">Purchase Price</InputLabel>
       <Input 
         className="form"
-        id="purchasePrice"
         type="number"
         step="any" 
-        //inputComponent={NumberFormatCustom}
         onChange={props.handlePurchaseInput}
         value={props.purchasePrice}
       />
     </FormControl>
     <br />
-    <FormControl>
+    <FormControl id="down-payment">
       <InputLabel className="form" htmlFor="downPayment">Down Payment</InputLabel>
       <Input 
         className="form" 
-        id="downPayment"
         type="number"
         step="any"
         onChange={props.handleDownPaymentInput}
@@ -72,7 +69,7 @@ const Form = props =>
       />
     </FormControl>
     <br />
-    <FormControl>
+    <FormControl id="loan-term">
       <InputLabel className="form" htmlFor="term">Loan term</InputLabel>
       <Input 
         className="form" 
@@ -90,35 +87,28 @@ const Form = props =>
     <Button raised onClick={props.handleFormReset} className="reset-button" >
       Reset
     </Button>
-  </form>
+  </form>}
 
 Form.propTypes = {
-  purchasePrice: PropTypes.number.isRequired,
+  purchasePrice: PropTypes.string.isRequired,
   handlePurchaseInput: PropTypes.func.isRequired,
   
-  downPayment: PropTypes.number.isRequired,
+  downPayment: PropTypes.string.isRequired,
   handleDownPaymentInput: PropTypes.func.isRequired,
   selectedRadio: PropTypes.string.isRequired,
   handleDownPaymentRadio: PropTypes.func.isRequired,
   
   principal: PropTypes.string.isRequired,
 
-  interest: PropTypes.number.isRequired,
+  interest: PropTypes.string.isRequired,
   handleInterestInput: PropTypes.func.isRequired,
 
-  term: PropTypes.number.isRequired,
+  term: PropTypes.string.isRequired,
   handleTermInput: PropTypes.func.isRequired,
 
-  payment: PropTypes.number.isRequired,
+  payment: PropTypes.string.isRequired,
 
   handleFormReset: PropTypes.func.isRequired
 }
-
-// const NumberFormatCustom = props => 
-//   <NumberFormat
-//     thousandSeparator
-//     prefix="$"
-//   />
-
 
 export default Form

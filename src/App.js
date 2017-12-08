@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
-import Form from './Form'
+import Form from './Form';
 import './App.css';
-import Grid from 'material-ui/Grid';
 import Card, { CardHeader } from 'material-ui/Card';
-import { CreateMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles';
-
-const styles = theme => ({}, {
-  CardHeader: {
-    color: "white",
-  },
-});
 
 class App extends Component {
 
@@ -75,13 +67,11 @@ class App extends Component {
       }
   }
 
-  handlePurchaseInput = event =>
+  handlePurchaseInput = event => 
     this.setState({ purchasePrice: event.target.value })
 
-  handleDownPaymentRadio = event => {
+  handleDownPaymentRadio = event => 
     this.setState({ selectedRadio: event.target.value })
-
-  }
 
   handleDownPaymentInput = event =>
     this.setState({ downPayment: event.target.value })
@@ -108,9 +98,9 @@ class App extends Component {
   render() {
 
     return (
-      <MuiThemeProvider>
+      <div>
         <Card raised className="card">
-          <CardHeader className="card-header" title="Mortgage Calculator" />
+          <CardHeader classes={{"title": "card-header-title", "root": "card-header"}} title="Mortgage Calculator" />
           <div>
             <Form
               purchasePrice={this.state.purchasePrice}
@@ -135,7 +125,7 @@ class App extends Component {
             />
           </div>
         </Card>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }

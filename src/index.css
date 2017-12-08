@@ -10,7 +10,10 @@ body {
 
 .form {
   margin-left: 10px;
-  
+}
+
+#purchase-price, #down-payment, #loan-term {
+  margin-top: 10px;
 }
 
 #interest {
@@ -36,8 +39,10 @@ body {
 
 .card-header {
   background-color: #3f51b5;
+}
+
+.card-header-title {
   color: white!important;
-  margin-bottom: 10px;
 }
 
 
