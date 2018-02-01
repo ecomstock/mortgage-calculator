@@ -24,7 +24,7 @@ class App extends Component {
           this.state.interest === "" || 
           this.state.term === ""
         )
-      ){ this.setState({ payment: "0.00" } )
+      ){ this.setState({ payment: "0.00" })
     }
 
     if(
