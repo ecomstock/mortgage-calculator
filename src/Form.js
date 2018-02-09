@@ -6,8 +6,7 @@ import Radio from 'material-ui/Radio';
 import Button from 'material-ui/Button';
 
 const Form = props => {  
-  return
-    <form>
+    return <form>
       <FormControl id="purchase-price">
         <InputLabel className="form" htmlFor="purchasePrice">Purchase Price</InputLabel>
         <Input 
